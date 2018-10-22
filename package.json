@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-testpayment",
+  "version": "1.0.0",
+  "description": "",
+  "cordova": {
+    "id": "cordova-plugin-testpayment",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Vishal Gole",
+  "license": "ISC"
+}

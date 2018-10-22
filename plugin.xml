@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-testpayment" version="1.0.0">
+   <name>TestPayment</name>
+   <js-module name="TestPayment" src="www/TestPayment.js">
+      <clobbers target="TestPayment" />
+   </js-module>
+   <platform name="android">
+      <config-file parent="/*" target="res/xml/config.xml">
+         <feature name="TestPayment">
+            <param name="android-package" value="cordova.plugin.testpayment.TestPayment" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/TestPayment.java" target-dir="src/cordova/plugin/testpayment/TestPayment" />
+   </platform>
+   <platform name="ios">
+      <config-file parent="/*" target="config.xml">
+         <feature name="TestPayment">
+            <param name="ios-package" value="TestPayment" />
+         </feature>
+      </config-file>
+      <source-file src="src/ios/TestPayment.m" />
+   </platform>
+</plugin>
