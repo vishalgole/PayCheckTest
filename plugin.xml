@@ -12,6 +12,8 @@
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
       <source-file src="src/android/TestPayment.java" target-dir="src/cordova/plugin/testpayment/TestPayment" />
+      <framework src="src/android/liquidsdk.gradle" custom="true" type="gradleReference" />
+      <resource-file src="liquidsdk/widget-debug.aar" target="libs/widget-debug.aar" />
    </platform>
    <platform name="ios">
       <config-file parent="/*" target="config.xml">

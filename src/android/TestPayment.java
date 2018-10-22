@@ -12,6 +12,15 @@ import org.json.JSONObject;
  */
 public class TestPayment extends CordovaPlugin {
 
+    public static String LIQUIDPAY_API_KEY = "KEY1" ;
+    public static String LIQUIDPAY_SECRET_KEY = "SECRET1";
+
+    private WidgetBuilder widgetBuilder = new WidgetBuilder()
+                .setApiKey(LIQUIDPAY_API_KEY)
+                .setApiSecret(LIQUIDPAY_SECRET_KEY)
+                .setApplicationContext(getApplicationContext())
+                .build();
+
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("coolMethod")) {
@@ -20,6 +29,8 @@ public class TestPayment extends CordovaPlugin {
             return true;
         }else if (action.equals("add")) {
             this.add(args, callbackContext);
+        }else if (action.equals("triggerWid")) {
+            this.triggerWid(args, callbackContext);
         }
         return false;
     }
@@ -42,6 +53,23 @@ public class TestPayment extends CordovaPlugin {
                 //TODO: handle exception
                 callbackContext.error("Unexpected Error");
             }
+        }
+    }
+
+    private void triggerWid(String message, CallbackContext callbackContext) {
+        try {
+            widgetBuilder.run(new WidgetInterface() {
+                @Override
+                public void onExit() {
+                    // result_status.setTextColor(Color.BLACK);
+                    // result_status.setText(R.string.done);
+                    new Utils().showToast(getApplicationContext(), "Widget Triggered");
+                    callbackContext.success("Done");
+                }
+            });
+        } catch (IllegalStateException e) {
+            Log.e("WIDGET ACCESS", e.getMessage());
+            callbackContext.error("Error");
         }
     }
 }
