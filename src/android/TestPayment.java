@@ -1,4 +1,4 @@
-package cordova-plugin-testpayment;
+package cordova.plugin.testpayment;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
