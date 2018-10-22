@@ -7,6 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import widget.liquidpay.com.widget.handler.PaymentInterface;
+import widget.liquidpay.com.widget.handler.WidgetBuilder;
+import widget.liquidpay.com.widget.handler.WidgetInterface;
+import widget.liquidpay.com.widget.utility.Utils;
+
 /**
  * This class echoes a string called from JavaScript.
  */
@@ -30,7 +35,8 @@ public class TestPayment extends CordovaPlugin {
         }else if (action.equals("add")) {
             this.add(args, callbackContext);
         }else if (action.equals("triggerWid")) {
-            this.triggerWid(args, callbackContext);
+            String message = args.getString(0);
+            this.triggerWid(message, callbackContext);
         }
         return false;
     }
