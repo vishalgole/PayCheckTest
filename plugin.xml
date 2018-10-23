@@ -24,8 +24,7 @@
             <param name="ios-package" value="TestPayment" />
          </feature>
       </config-file>
-      <framework src="src/ios/LiquidPayWidget.framework" custom="true" embed="true"/>
+      <framework src="src/ios/LiquidPayWidget.framework" custom="true" embed="true" />
       <source-file src="src/ios/TestPayment.m" />
-      <source-file src="src/ios/LiquidPayWidget.framework" target-dir="lib" framework="true" />
    </platform>
 </plugin>
