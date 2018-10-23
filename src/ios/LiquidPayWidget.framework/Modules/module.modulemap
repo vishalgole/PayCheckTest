@@ -1,0 +1,11 @@
+framework module LiquidPayWidget {
+  umbrella header "LiquidPayWidget.h"
+
+  export *
+  module * { export * }
+}
+
+module LiquidPayWidget.Swift {
+    header "LiquidPayWidget-Swift.h"
+    requires objc
+}
