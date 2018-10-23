@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WidgetSample</string>
+    <string name="text_view_app_title">Liquidpay Widget App Sample</string>
+    <string name="transaction_success">Payment transaction success.</string>
+    <string name="transaction_failure">Payment transaction failed.</string>
+    <string name="transaction_cancelled">Payment transaction cancelled</string>
+    <string name="transaction_done">Widget transaction done.</string>
+    <string name="payment_failed">Payment not successful.</string>
+    <string name="payment_success">Payment success.</string>
+    <string name="payment_cancelled">Payment cancelled.</string>
+    <string name="exit_from_widget">Exit from Widget</string>
+    <string name="done">Done</string>
+</resources>
