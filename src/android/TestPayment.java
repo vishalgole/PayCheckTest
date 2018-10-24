@@ -3,6 +3,9 @@ package cordova.plugin.testpayment;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
+import android.content.Context;
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,11 +23,7 @@ public class TestPayment extends CordovaPlugin {
     public static String LIQUIDPAY_API_KEY = "KEY1" ;
     public static String LIQUIDPAY_SECRET_KEY = "SECRET1";
 
-    private WidgetBuilder widgetBuilder = new WidgetBuilder()
-                .setApiKey(LIQUIDPAY_API_KEY)
-                .setApiSecret(LIQUIDPAY_SECRET_KEY)
-                .setApplicationContext(getApplicationContext())
-                .build();
+    
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -66,13 +65,19 @@ public class TestPayment extends CordovaPlugin {
     }
 
     private void triggerWid(String message, CallbackContext callbackContext) {
+        Context context = this.cordova.getActivity().getApplicationContext();
+         WidgetBuilder widgetBuilder = new WidgetBuilder()
+                .setApiKey(LIQUIDPAY_API_KEY)
+                .setApiSecret(LIQUIDPAY_SECRET_KEY)
+                .setApplicationContext(context)
+                .build();
         try {
             widgetBuilder.run(new WidgetInterface() {
                 @Override
                 public void onExit() {
                     // result_status.setTextColor(Color.BLACK);
                     // result_status.setText(R.string.done);
-                    new Utils().showToast(getApplicationContext(), "Widget Triggered");
+                    new Utils().showToast(context, "Widget Triggered");
                     callbackContext.success("Done");
                 }
             });
@@ -83,27 +88,36 @@ public class TestPayment extends CordovaPlugin {
     }
 
     private void triggerPay(String message, CallbackContext callbackContext) {
+        Context context = this.cordova.getActivity().getApplicationContext();
+         WidgetBuilder widgetBuilder = new WidgetBuilder()
+                .setApiKey(LIQUIDPAY_API_KEY)
+                .setApiSecret(LIQUIDPAY_SECRET_KEY)
+                .setApplicationContext(context)
+                .build();
         try {
             widgetBuilder.doPayment(new PaymentInterface() {
                 @Override
                 public void onPaymentSuccess() {
                     result_status.setTextColor(Color.GREEN);
                     result_status.setText(R.string.transaction_success);
-                    new Utils().showToast(getApplicationContext(), getString(R.string.payment_success));
+                    new Utils().showToast(context, getString(R.string.payment_success));
+                    callbackContext.success(getString(R.string.payment_success));
                 }
 
                 @Override
                 public void onPaymentFailure() {
                     result_status.setTextColor(Color.RED);
                     result_status.setText(R.string.transaction_failure);
-                    new Utils().showToast(getApplicationContext(), getString(R.string.payment_failed));
+                    new Utils().showToast(context, getString(R.string.payment_failed));
+                    callbackContext.success(getString(R.string.payment_failed));
                 }
 
                 @Override
                 public void onPaymentCancelled() {
                     result_status.setTextColor(Color.RED);
                     result_status.setText(R.string.payment_cancelled);
-                    new Utils().showToast(getApplicationContext(), getString(R.string.transaction_cancelled));
+                    new Utils().showToast(context, getString(R.string.transaction_cancelled));
+                    callbackContext.success(getString(R.string.transaction_cancelled));
                 }
             });
 
