@@ -56,7 +56,7 @@ public class TestPayment extends CordovaPlugin {
         if(args !=null){
             try {
                 int param1 = Integer.parseInt(args.getJSONObject(0).getString("param1"));
-                int param2 = Integer.parseInt(args.getJSONObject(1).getString("param2"));
+                int param2 = Integer.parseInt(args.getJSONObject(0).getString("param2"));
                 callbackContext.success("" + (param1+param2));
             } catch (Exception e) {
                 //TODO: handle exception
