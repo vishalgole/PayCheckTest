@@ -98,26 +98,20 @@ public class TestPayment extends CordovaPlugin {
             widgetBuilder.doPayment(new PaymentInterface() {
                 @Override
                 public void onPaymentSuccess() {
-                    result_status.setTextColor(Color.GREEN);
-                    result_status.setText(R.string.transaction_success);
-                    new Utils().showToast(context, getString(R.string.payment_success));
-                    callbackContext.success(getString(R.string.payment_success));
+                    new Utils().showToast(context, context.getResources().getString(R.string.payment_success));
+                    callbackContext.success(context.getResources().getString(R.string.payment_success));
                 }
 
                 @Override
                 public void onPaymentFailure() {
-                    result_status.setTextColor(Color.RED);
-                    result_status.setText(R.string.transaction_failure);
-                    new Utils().showToast(context, getString(R.string.payment_failed));
-                    callbackContext.success(getString(R.string.payment_failed));
+                    new Utils().showToast(context, context.getResources().getString(R.string.payment_failed));
+                    callbackContext.success(context.getResources().getString(R.string.payment_failed));
                 }
 
                 @Override
                 public void onPaymentCancelled() {
-                    result_status.setTextColor(Color.RED);
-                    result_status.setText(R.string.payment_cancelled);
-                    new Utils().showToast(context, getString(R.string.transaction_cancelled));
-                    callbackContext.success(getString(R.string.transaction_cancelled));
+                    new Utils().showToast(context, context.getResources().getString(R.string.transaction_cancelled));
+                    callbackContext.success(context.getResources().getString(R.string.transaction_cancelled));
                 }
             });
 
