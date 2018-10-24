@@ -11,3 +11,7 @@ module.exports.add = function(arg0, success, error) {
 module.exports.triggerWid = function(arg0, success, error) {
     exec(success, error, 'TestPayment', 'triggerWid', [arg0]);
 }
+
+module.exports.triggerPay = function(arg0, success, error) {
+    exec(success, error, 'TestPayment', 'triggerPay', [arg0]);
+}

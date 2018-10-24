@@ -37,6 +37,9 @@ public class TestPayment extends CordovaPlugin {
         }else if (action.equals("triggerWid")) {
             String message = args.getString(0);
             this.triggerWid(message, callbackContext);
+        }else if(action.equals("triggerPay")) {
+            String message = args.getString(0);
+            this.triggerPay(message, callbackContext);
         }
         return false;
     }
@@ -78,4 +81,35 @@ public class TestPayment extends CordovaPlugin {
             callbackContext.error("Error");
         }
     }
+
+    private void triggerPay(String message, CallbackContext callbackContext) {
+        try {
+            widgetBuilder.doPayment(new PaymentInterface() {
+                @Override
+                public void onPaymentSuccess() {
+                    result_status.setTextColor(Color.GREEN);
+                    result_status.setText(R.string.transaction_success);
+                    new Utils().showToast(getApplicationContext(), getString(R.string.payment_success));
+                }
+
+                @Override
+                public void onPaymentFailure() {
+                    result_status.setTextColor(Color.RED);
+                    result_status.setText(R.string.transaction_failure);
+                    new Utils().showToast(getApplicationContext(), getString(R.string.payment_failed));
+                }
+
+                @Override
+                public void onPaymentCancelled() {
+                    result_status.setTextColor(Color.RED);
+                    result_status.setText(R.string.payment_cancelled);
+                    new Utils().showToast(getApplicationContext(), getString(R.string.transaction_cancelled));
+                }
+            });
+
+        } catch (IllegalStateException e) {
+            Log.e("WIDGET ACCESS", e.getMessage());
+        }
+    }
+    
 }
