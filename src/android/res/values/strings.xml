@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">WidgetSample</string>
+    <string name="app_name">PayApp</string>
+    <string name="activity_name">PayApp</string>
+    <string name="launcher_name">PayApp</string>
     <string name="text_view_app_title">Liquidpay Widget App Sample</string>
     <string name="transaction_success">Payment transaction success.</string>
     <string name="transaction_failure">Payment transaction failed.</string>
