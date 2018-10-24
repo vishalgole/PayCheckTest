@@ -5,6 +5,7 @@ import org.apache.cordova.CallbackContext;
 
 import android.content.Context;
 import android.util.Log;
+import io.ionic.starter.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
