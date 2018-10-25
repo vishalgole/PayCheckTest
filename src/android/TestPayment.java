@@ -23,7 +23,7 @@ public class TestPayment extends CordovaPlugin {
 
     public static String LIQUIDPAY_API_KEY = "KEY1" ;
     public static String LIQUIDPAY_SECRET_KEY = "SECRET1";
-
+    public static String CALLBACK_MESSAGE = "";
     
 
     @Override
@@ -79,13 +79,16 @@ public class TestPayment extends CordovaPlugin {
                     // result_status.setTextColor(Color.BLACK);
                     // result_status.setText(R.string.done);
                     new Utils().showToast(context, "Widget Triggered");
+                    CALLBACK_MESSAGE = "Done";
                     callbackContext.success("Done");
                 }
             });
         } catch (IllegalStateException e) {
             Log.e("WIDGET ACCESS", e.getMessage());
+            CALLBACK_MESSAGE = e.getMessage();
             callbackContext.error("Error");
         }
+        callbackContext.success(CALLBACK_MESSAGE);
     }
 
     private void triggerPay(String message, CallbackContext callbackContext) {
@@ -100,25 +103,31 @@ public class TestPayment extends CordovaPlugin {
                 @Override
                 public void onPaymentSuccess() {
                     new Utils().showToast(context, context.getResources().getString(R.string.payment_success));
+                    CALLBACK_MESSAGE = context.getResources().getString(R.string.payment_success);
                     callbackContext.success(context.getResources().getString(R.string.payment_success));
                 }
 
                 @Override
                 public void onPaymentFailure() {
                     new Utils().showToast(context, context.getResources().getString(R.string.payment_failed));
+                    CALLBACK_MESSAGE = context.getResources().getString(R.string.payment_failed);
                     callbackContext.success(context.getResources().getString(R.string.payment_failed));
                 }
 
                 @Override
                 public void onPaymentCancelled() {
                     new Utils().showToast(context, context.getResources().getString(R.string.transaction_cancelled));
+                    CALLBACK_MESSAGE = context.getResources().getString(R.string.transaction_cancelled);
                     callbackContext.success(context.getResources().getString(R.string.transaction_cancelled));
                 }
             });
 
         } catch (IllegalStateException e) {
+            CALLBACK_MESSAGE =  e.getMessage();
             Log.e("WIDGET ACCESS", e.getMessage());
         }
+        callbackContext.success(CALLBACK_MESSAGE);
+
     }
     
 }
